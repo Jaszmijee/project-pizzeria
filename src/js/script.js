@@ -97,6 +97,7 @@
             const thisProduct = this;
             console.log('thisProduct', thisProduct)
             /* find the clickable trigger (the element that should react to clicking) */
+
             /* START: add event listener to clickable trigger on event click */
             thisProduct.accordionTrigger.addEventListener('click', function (event) {
                 console.log('event', event);
@@ -105,18 +106,18 @@
                 event.preventDefault();
 
                 // find active product (product that has active class)
-                const activeProducts = thisProduct.element.querySelectorAll('.product__header.active');
+                const activeProducts = document.querySelectorAll('.product.active');
                 console.log('activeProducts', activeProducts);
 
                 // if there is an active product and it's not thisProduct.element, remove class active from it
                 for (let activeProduct of activeProducts) {
                     if (activeProduct && activeProduct !== thisProduct.element) {
-                        activeProduct.classList.remove(classNames.menuProduct.imageVisible);
+                        activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
                     }
                 }
 
                 // toggle active class on thisProduct.element
-                thisProduct.element.classList.toggle(classNames.menuProduct.imageVisible);
+                thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
             });
         }
 
