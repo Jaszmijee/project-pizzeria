@@ -90,6 +90,7 @@
             console.log('thisProduct.formInputs', thisProduct.formInputs)
             thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
             thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+            thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper)
         }
 
         initAccordion() {
@@ -110,12 +111,12 @@
                 // if there is an active product and it's not thisProduct.element, remove class active from it
                 for (let activeProduct of activeProducts) {
                     if (activeProduct && activeProduct !== thisProduct.element) {
-                        activeProduct.classList.remove('active');
+                        activeProduct.classList.remove(classNames.menuProduct.imageVisible);
                     }
                 }
 
                 // toggle active class on thisProduct.element
-                thisProduct.element.classList.toggle('active');
+                thisProduct.element.classList.toggle(classNames.menuProduct.imageVisible);
             });
         }
 
@@ -164,6 +165,17 @@
                     // check if the option is selected in the form data
                     const isOptionSelected = formData[paramId].includes(optionId);
                     console.log(optionId, 'is selected?', isOptionSelected);
+
+
+                    const chooseImageClass = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+                    console.log('chooseImageClass', chooseImageClass);
+                    if (chooseImageClass) {
+                        if (isOptionSelected) {
+                            chooseImageClass.classList.add(classNames.menuProduct.imageVisible)
+                        } else {
+                            chooseImageClass.classList.remove(classNames.menuProduct.imageVisible)
+                        }
+                    }
 
                     // check if the option is not default and is selected
                     const addCost = isOptionSelected && !option.default;
