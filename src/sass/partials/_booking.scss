@@ -173,6 +173,13 @@
         }
   
       }
+
+      &.selected {
+        cursor: not-allowed;
+        background-color: $color-success;
+        border: 5px solid;
+        border-color: darken($color-success, 40%);
+      }
     }
   
     [data-table="1"] {
@@ -198,3 +205,7 @@
     @include flex(row, flex-start, space-between);
     margin: ($base-size * 4) auto;
   }
+
+
+
+
